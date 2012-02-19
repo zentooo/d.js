@@ -5,7 +5,7 @@ function d(arg, ctx) {
         document.addEventListener("DOMContentLoaded", arg, false);
     }
     else {
-        return (ctx || document).querySelectorAll(arg);
+        return d.toArray((ctx || document).querySelectorAll(arg));
     }
 }
 
@@ -26,8 +26,8 @@ d.toArray = function(arrayLike) { return Array.prototype.slice.apply(arrayLike);
 // selectors
 
 d.id = function(id, ctx) { return (ctx || document).getElementById(id); };
-d.cls = function(cls, ctx) { return (ctx || document).getElementsByClassName(cls); };
-d.tag = function(tag, ctx) { return (ctx || document).getElementsByTagName(tag); };
+d.cls = function(cls, ctx) { return d.toArray((ctx || document).getElementsByClassName(cls)); };
+d.tag = function(tag, ctx) { return d.toArray((ctx || document).getElementsByTagName(tag)); };
 
 
 // dom
@@ -57,7 +57,7 @@ d.add = function(elems, html) {
             elems.innerHTML += html;
         }
         else {
-            elems.appendChild(html);
+            elems.appendChild(html.cloneNode(true));
         }
     }
     else {
@@ -68,7 +68,7 @@ d.add = function(elems, html) {
         }
         else {
             d.toArray(elems).forEach(function(el) {
-                el.appendChild(html);
+                el.appendChild(html.cloneNode(true));
             });
         }
     }

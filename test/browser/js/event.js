@@ -144,7 +144,6 @@ describe('d.unbind', function() {
         d.bind(elems, "click", spy);
         d.unbind(elems, "click");
         emit(elems, "click");
-        console.dir(spy);
         ng(spy.called);
     });
 });
