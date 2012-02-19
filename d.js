@@ -219,13 +219,14 @@ d.swapClass = function(elems, fromClass, toClass) {
 };
 
 
+// event
+
 d._listeners = {};
 d._nidc = 1;
 
 d._nid = function(el) {
     return el._nid || (el._nid = d._nidc++);
 };
-
 
 d._getStructs = function(namespace) {
     var structs = [], current = [];
@@ -237,9 +238,6 @@ d._getStructs = function(namespace) {
 
     return structs;
 };
-
-
-// event
 
 d.bind = function(elems, name, callback, useCapture) {
     if ( elems.length === void 0 ) {
