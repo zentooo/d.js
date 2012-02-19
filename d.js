@@ -1,4 +1,4 @@
-// scopes
+// scope
 
 function d(arg, ctx) {
     if ( typeof arg === "function" ) {
@@ -9,12 +9,11 @@ function d(arg, ctx) {
     }
 }
 
-d.version = "0.0.1";
-d.global = this;
+d.version = 0.1;
 
 d.exportAs = function(name) {
-    d.global[name] = d;
-    delete global.d;
+    window[name] = d;
+    delete window["d"];
 };
 
 
