@@ -19,7 +19,7 @@ d.exportAs = function(name) {
 
 // util
 
-d.isObject = function(o) { return Object.prototype.toString.call(o) === "[object Object]"; };
+d.isHash = function(o) { return o.constructor.toString().indexOf("function Object") === 0; };
 d.toArray = function(arrayLike) { return Array.prototype.slice.apply(arrayLike); };
 
 
@@ -39,12 +39,12 @@ d.html = function(elems, htmlString) {
     }
     else {
         if ( htmlString ) {
-            d.toArray(elems).map(function(el) {
+            return d.toArray(elems).map(function(el) {
                 return (el.innerHTML = htmlString);
             });
         }
         else {
-            d.toArray(elems).forEach(function(el) {
+            return d.toArray(elems).map(function(el) {
                 return el.innerHTML;
             });
         }
@@ -91,7 +91,7 @@ d.remove = function(elems) {
 d.css = function(elems, arg1, arg2) {
     var cssText;
     if ( arguments.length === 1 ) {
-        if ( d.isObject(arg1) ) { // d.css(elems, { foo: "bar" });
+        if ( d.isHash(arg1) ) { // d.css(elems, { foo: "bar" });
             cssText = d._cssText(arg1);
         }
         else { // d.css(elems, "foo");
@@ -130,7 +130,7 @@ d._cssText = function(o) {
 
 d.attr = function(elems, arg1, arg2) {
     if ( arguments.length === 1 ) {
-        if ( d.isObject(arg1) ) { // d.attr(elems, { foo: "bar" });
+        if ( d.isHash(arg1) ) { // d.attr(elems, { foo: "bar" });
             for ( var k in arg1 ) {
                 d._setAttr(elems, k, arg1[k]);
             }

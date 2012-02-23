@@ -1,6 +1,6 @@
 describe('d', function(){
     it('returns NodeList', function() {
-        is(str(d(".bar")), "[object NodeList]");
+        is(str(d(".bar")), "[object Array]");
     });
 });
 
@@ -12,18 +12,19 @@ describe('d.id', function(){
 
 describe('d.cls', function(){
     it('returns NodeList', function() {
-        is(str(d.cls("bar")), "[object NodeList]");
+        is(str(d.cls("bar")), "[object Array]");
     });
 });
 
 describe('d.tag', function(){
     it('returns NodeList', function() {
-        is(str(d.tag("a")), "[object NodeList]");
+        is(str(d.tag("a")), "[object Array]");
     });
 });
 
 describe('d.isObject', function(){
     function Klass() {}
+    Klass.prototype = [];
     var k = new Klass();
     it('detect plain object or not', function() {
         ok(d.isObject({}));
